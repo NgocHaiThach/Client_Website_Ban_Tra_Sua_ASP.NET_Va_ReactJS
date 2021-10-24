@@ -1,0 +1,39 @@
+component
+|_header
+    |_header navbar => không có chức năng
+    |_header search => chức năng tìm kiếm
+    |_header cart => chức năng giỏ hàng
+
+|_footer
+    |_footer => không có chức năng
+
+|_container
+    |_catergory => chức năng phân loại
+    |_filter => chức năng lọc sp
+    |_product => chức năng hiển thị sp
+    |_pagination => chức năng phân trang
+
+
+conatainers
+|_home page
+    |_product list => render
+        |_product card => render
+
+|_product detail page
+    |_product detail 
+
+|_cart page
+    |_cart list
+        |_cart card
+
+|_header
+    |_header navbar
+    |_header search
+    |_header cart icon
+        |_cart list in icon
+            |_cart card in icon
+
+|_contents
+    |_catergory
+    |_filter
+    |_pagination 
