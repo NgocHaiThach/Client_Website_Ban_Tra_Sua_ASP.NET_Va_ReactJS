@@ -100,10 +100,10 @@ export const addOneItemToCart = async (dispatch, item) => {
     }
 }
 
-export const getCarts = async (dispatch) => {
+export const getCarts = async (dispatch, accessToken, idUser) => {
     dispatch(getCartStart)
     try {
-        const res = await RequestApi('carts', 'GET', null)
+        const res = await RequestApi(`api/carts/${idUser}`, 'GET', null, accessToken)
         dispatch(getCartSuccess(res.data))
     }
     catch (err) {
@@ -126,7 +126,7 @@ export const deleteItemInCart = async (dispatch, id) => {
 export const getProducts = async (dispatch) => {
     dispatch(getProductStart)
     try {
-        const res = await RequestApi('products', 'GET', null)
+        const res = await RequestApi('api/products', 'GET', null)
         dispatch(getProductSuccess(res.data))
     }
     catch (err) {

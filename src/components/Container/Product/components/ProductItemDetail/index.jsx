@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css'
 import { formatPrice } from '../../../../../utils/FormatPrice';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import RequestApi from '../../../../../utils/RequestApi'
 
 ProductItemDetail.propTypes = {};
 
@@ -45,103 +46,214 @@ function ProductItemDetail(props) {
             progress: undefined,
         })
     }
-    return (
-        <>{item &&
-            <div className="wrapper row">
-                <div className="col l-6">
-                    <div className="preview-pic tab-content">
-                        <div className="tab-pane active" id="pic-1">
-                            <img
-                                src={item.product.image} />
-                        </div>
-                    </div>
-                </div>
-                <div className="col l-6">
-                    <div className="product__detail">
-                        <h3 className="product__title">{item.product.name}</h3>
 
-                        <p className="product__description">{item.product.description}</p>
-                        <h4 className="product__price">Đơn Giá: <span>{formatPrice(item.product.price)}đ</span></h4>
 
-                        <h5 className="sizes">sizes:
-                            <span className="size size__active">s</span>
-                            <span className="size">m</span>
-                            <span className="size">l</span>
-                        </h5>
-                        <div className="quantity">
-                            <h5 className="quantity__title">số lượng:
-                            </h5>
-                            <div className="quantity__number">
-                                <span onClick={() => onDecreas()} className="quantity__number-minus">- </span>
-                                <input className="quantity__number-text" type="text" value={quantity} />
-                                <span onClick={() => onAdd()} className="quantity__number-plus"> +</span>
-                            </div>
-                        </div>
-                        <div className="size-ice">
-                            <p className="size-ice__title">Ice:</p>
-                            <span className="size-ice__item">
-                                <input checked="checked" type="radio" id="ice" name="ice" value="30" />
-                                <label htmlFor="ice">25%</label><br />
-                            </span>
-                            <span className="size-ice__item">
-                                <input type="radio" id="ice" name="ice" value="30" />
-                                <label htmlFor="ice">50%</label><br />
-                            </span>
-                            <span className="size-ice__item">
-                                <input type="radio" id="ice" name="ice" value="30" />
-                                <label htmlFor="ice">75%</label><br />
-                            </span>
-                            <span className="size-ice__item">
-                                <input type="radio" id="ice" name="ice" value="30" />
-                                <label htmlFor="ice">100%</label><br />
-                            </span>
-                        </div>
-
-                        <div className="size-sugar">
-                            <p className="size-sugar__title">Sugar:</p>
-                            <span className="size-sugar__item">
-                                <input checked="checked" type="radio" id="sugar" name="sugar" value="30" />
-                                <label htmlFor="sugar">25%</label><br />
-                            </span>
-                            <span className="size-sugar__item">
-                                <input type="radio" id="sugar" name="sugar" value="30" />
-                                <label htmlFor="sugar">50%</label><br />
-                            </span>
-                            <span className="size-sugar__item">
-                                <input type="radio" id="sugar" name="sugar" value="30" />
-                                <label htmlFor="sugar">75%</label><br />
-                            </span>
-                            <span className="size-sugar__item">
-                                <input type="radio" id="sugar" name="sugar" value="30" />
-                                <label htmlFor="sugar">100%</label><br />
-                            </span>
-                        </div>
-
-                        <div className="action">
-                            <button
-                                onClick={() => { onAddToCart(item,) }}
-                                className="add-to-cart btn btn-default"
-                                type="button">
-                                Thêm vào giỏ
-                            </button>
-                            <div className="action-select-toping">
-
-                                <select id="test">
-                                    <option value="1">toping</option>
-                                    <option value="2">toping</option>
-                                    <option value="3">toping</option>
-                                    <option value="4">toping</option>
-                                    <option value="5">toping</option>
-                                    <option value="6">toping</option>
-                                    <option value="7">toping</option>
-                                    <option value="8">toping</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    // xử  lý size product
+    const sizes = [
+        {
+            name: 'S',
+            id: 0
+        },
+        {
+            name: 'M',
+            id: 1
+        },
+        {
+            name: 'L',
+            id: 2
         }
+    ]
+
+    const [active, setActive] = useState(0)
+    const classNameOfSize = 'size'
+    const classNameOfSizeAcive = 'size size__active'
+
+    //xử lý toppings
+    const [toppings, setToppings] = useState([]);
+    useEffect(() => {
+        async function getTopping() {
+            const res = await RequestApi('api/toppings', 'GET')
+            setToppings([...res.data])
+        }
+        getTopping()
+    }, [])
+
+    const [openTopping, setOpenTopping] = useState(false)
+
+    // xử lý ice 
+    const [checkedIce, setCheckedIce] = useState(3)
+    const percentIce = [
+        {
+            name: '25%',
+            id: 0
+        },
+        {
+            name: '50%',
+            id: 1
+        },
+        {
+            name: '75%',
+            id: 2
+        },
+        {
+            name: '100%',
+            id: 3
+        },
+    ]
+
+    // xử lý sugar
+    const [checkedSugar, setCheckedSugar] = useState(3)
+    const percentSuagar = [
+        {
+            name: '25%',
+            id: 0
+        },
+        {
+            name: '50%',
+            id: 1
+        },
+        {
+            name: '75%',
+            id: 2
+        },
+        {
+            name: '100%',
+            id: 3
+        },
+    ]
+
+    // xử lý topping 
+    const [selectTopping, setSelectTopping] = useState()
+
+
+
+    return (
+        <>
+
+            {item &&
+                <div className="wrapper row">
+
+                    <div className="col l-6">
+                        <div className="preview-pic tab-content">
+                            <div className="tab-pane active" id="pic-1">
+                                <img
+                                    src={item.image} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col l-6">
+                        <div className="product__detail">
+                            <h3 className="product__title">{item.productName}</h3>
+
+                            <p className="product__description">{item.Description}</p>
+                            <h4 className="product__price">Đơn Giá: <span>{formatPrice(item.price)}đ</span></h4>
+
+                            <h5 className="sizes">sizes:
+                                {/* <span onClick={() => onSizeClick()} className="size size__active">s</span>
+                            <span className="size ">m</span>
+                            <span className="size">l</span> */}
+                                {sizes.map((size, index) => (
+                                    <div key={index} style={{ display: 'inline-block' }}>
+                                        <span
+                                            onClick={() => setActive(size.id)}
+                                            className={active === size.id ? classNameOfSizeAcive : classNameOfSize}
+                                        >{size.name}</span>
+                                    </div>
+                                ))}
+                            </h5>
+                            <div className="quantity">
+                                <h5 className="quantity__title">số lượng:
+                                </h5>
+                                <div className="quantity__number">
+                                    <span onClick={() => onDecreas()} className="quantity__number-minus">- </span>
+                                    <input className="quantity__number-text" type="text" value={quantity} />
+                                    <span onClick={() => onAdd()} className="quantity__number-plus"> +</span>
+                                </div>
+                            </div>
+                            <div className="size-ice">
+                                <p className="size-ice__title">Ice:</p>
+                                {percentIce.map((percent, index) => (
+                                    <span key={index} className="size-ice__item">
+                                        <input
+                                            onChange={() => setCheckedIce(percent.id)}
+                                            checked={checkedIce === percent.id}
+                                            type="radio"
+                                        />
+                                        {percent.name}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div className="size-sugar">
+                                <p className="size-sugar__title">Sugar:</p>
+
+                                {percentSuagar.map((percent, index) => (
+                                    <span key={index} className="size-sugar__item">
+                                        <input
+                                            onChange={() => setCheckedSugar(percent.id)}
+                                            checked={checkedSugar === percent.id}
+                                            type="radio"
+                                        />
+                                        {percent.name}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div className="action">
+                                <button
+                                    onClick={() => { onAddToCart(item,) }}
+                                    className="add-to-cart btn btn-default"
+                                    type="button">
+                                    Thêm vào giỏ
+                                </button>
+                                <div className="action-select-toping">
+                                    {/* <select onClick={() => {
+                                        setOpenTopping(!openTopping)
+                                        
+                                        }}>
+                                        <option value="2">Thạch Rau Câu</option>
+                                    </select> */}
+                                    <div className="select-display-toping">
+                                        <div className="select-display__title" onClick={() => setOpenTopping(!openTopping)}>Toppings</div>
+                                        <i onClick={() => setOpenTopping(!openTopping)} className="fas fa-chevron-down select-display__icon"></i>
+                                    </div>
+                                    {/* <select > */}
+                                    <div className="toping-list">
+                                        {toppings.length > 0 && toppings.map((topping, index) => (
+                                            <div
+                                                className="toping-item"
+                                                key={index}
+                                                style={openTopping ? { display: 'inline-block' } : { display: 'none' }}
+                                            >
+                                                <input
+                                                    style={{ textAlign: 'center' }}
+                                                    type="radio"
+                                                    checked={selectTopping === topping.toppingId}
+                                                    onChange={() => setSelectTopping(topping.toppingId)}
+                                                />
+                                                {topping.toppingName}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {/* </select> */}
+
+                                    {/* <select id="test">
+                                        <option checked value="1">toping</option>
+                                        <option value="2">toping</option>
+                                        <option value="3">toping</option>
+                                        <option value="4">toping</option>
+                                        <option value="5">toping</option>
+                                        <option value="6">toping</option>
+                                        <option value="7">toping</option>
+                                        <option value="8">toping</option>
+                                    </select> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
         </>
     );
 }

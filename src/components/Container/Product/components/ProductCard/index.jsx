@@ -17,28 +17,28 @@ function ProductCard(props) {
       <div
         className="home-product-item__img"
         style={{
-          backgroundImage: `url(${product.product.image})`,
+          backgroundImage: `url(${product.image})`,
         }}
       ></div>
 
-      <h4 className="home-product-item__name">{product.product.name}</h4>
+      <h4 className="home-product-item__name">{product.productName}</h4>
 
       <div className="home-product-item__price">
         {/* <span className="home-product-item__price-old">{pro.price}</span> */}
         <span className="home-product-item__price-current">
-          {formatPrice(product.product.price)}đ
+          {formatPrice(product.price)}đ
         </span>
       </div>
 
-      <div className="home-product-item__action">
+      {/* <div className="home-product-item__action">
         <div className="home-product-item__rating">
           {showRating(product.product.rating)}
         </div>
-      </div>
+      </div> */}
 
       <div className="home-product-item__origin">
         <span className="home-product-item__origin-name">
-          {product.product.description}
+          {product.description}
         </span>
       </div>
 

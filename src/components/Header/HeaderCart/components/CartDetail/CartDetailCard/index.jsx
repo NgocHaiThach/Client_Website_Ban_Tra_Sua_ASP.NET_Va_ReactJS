@@ -5,9 +5,7 @@ CartDetailCard.propTypes = {};
 
 function CartDetailCard(props) {
     const { item, handleDeleteItemInCart, handleDecreaseInCart, handleAddInCart } = props
-    const totalPrice = (+item.product.price * +item.quantity)
-
-
+    const totalPrice = (+item.dishPrice * +item.quantily)
 
     const clickDeleteItem = (id) => {
         if (handleDeleteItemInCart) {
@@ -31,8 +29,8 @@ function CartDetailCard(props) {
                     <img src={item.product.image} />
                 </div>
                 <div className="col l-3 product-details">
-                    <span className="product-item__title">{item.product.name}</span>
-                    <p className="product-item__description">{item.product.description}</p>
+                    <span className="product-item__title">{item.product.productName}</span>
+                    <p className="product-item__description">Size: {item.sizeName} + {item.topping.toppingName}</p>
                 </div>
                 <div className="col l-2 product-item__price">{formatPrice(item.product.price)}đ</div>
                 <div className="col l-1 product-item__quantity">
@@ -41,7 +39,7 @@ function CartDetailCard(props) {
                             className="product-quantity__number-minus"
                             onClick={() => { onDecreaseQuantity(item) }}
                         >- </span>
-                        <input className="product-quantity__number-text" type="text" value={item.quantity} />
+                        <input className="product-quantity__number-text" type="text" value={item.quantily} />
                         {/* <span>{quantity}</span> */}
                         <span
                             className="product-quantity__number-plus"

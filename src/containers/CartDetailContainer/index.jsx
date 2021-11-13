@@ -9,7 +9,8 @@ import { addQuantitySuccess } from '../../redux/cartSlice';
 CartDetailContainer.propTypes = {};
 
 function CartDetailContainer(props) {
-    const carts = useSelector(state => state.carts.carts)
+    const carts = useSelector(state => state.carts.carts.dishCarts)
+
     const dispatch = useDispatch()
     const style = {
         fontSize: 17
@@ -29,12 +30,13 @@ function CartDetailContainer(props) {
     }
     return (
         <>
-            <CartDeatilList
+            {carts && <CartDeatilList
                 cartList={carts}
                 handleDeleteItemInCart={handleDeleteItemInCart}
                 handleDecreaseInCart={handleDecreaseInCart}
                 handleAddInCart={handleAddInCart}
             />
+            }
             <ToastContainer style={style} />
         </>
     );

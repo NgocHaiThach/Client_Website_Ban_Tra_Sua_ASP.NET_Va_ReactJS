@@ -19,7 +19,7 @@ function ProductDetailPage(props) {
 
     //tìm xem có sp nào có tên trùng với slug => hiển thị lên detail
     const detailProduct = useSelector(state => {
-        const foundProduct = state.products.products.find(x => toSlug(x.product.name) === slug)
+        const foundProduct = state.products.products.find(x => toSlug(x.productName) === slug)
         return foundProduct
     })
 
@@ -30,8 +30,15 @@ function ProductDetailPage(props) {
     //tìm xem có sản phẩm nào trong giỏ có trùng tên với sản phẩm chuẩn bị thêm vào không?
     // => có thì trả về index trong giỏ hàng
     const findProductInCart = useSelector((state) => {
-        const foundProduct = state.carts.carts.findIndex(
-            x => toSlug(x.product.name) === slug)
+
+        // const foundProduct = state.carts.carts.dishCarts.findIndex(
+        //     x => toSlug(x.product.productName) === slug)
+        // return foundProduct
+
+        const list = state.carts.carts.dishCarts
+
+        const foundProduct = list.findIndex(
+            x => toSlug(x.product.productName) === slug)
         return foundProduct
     })
 

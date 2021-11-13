@@ -3,13 +3,39 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Images from '../../../constant/images';
 import './style.css'
+import cookies from 'react-cookies';
+import { useHistory } from "react-router-dom";
+import { computeHeadingLevel } from '@testing-library/dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/userSlice';
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+
+export let displayFormLogin = false
+export let displayFormRegis = false
 
 HeaderNavbar.propTypes = {};
 
 function HeaderNavbar(props) {
-    //const user = useSelector(state => state.user)
-    const user = localStorage.getItem('user')
-    console.log('user logined', user)
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const userName = useSelector(state => state.user)
+
+    const onLogout = () => {
+        cookies.remove('user')
+        const action = logout()
+        dispatch(action);
+        displayFormLogin = true
+    }
+
+    const onEnableFormLogin = () => {
+        displayFormLogin = true
+    }
+
+    const onEnableFormRegister = () => {
+        displayFormRegis = true
+    }
+
     return (
         <nav className="header__navbar hide-on-mobile-tablet">
             <ul className="header__navbar-list">
@@ -98,14 +124,21 @@ function HeaderNavbar(props) {
                         Trợ giúp
                     </a>
                 </li>
-                {user === null ?
+                {userName.UserName === null ?
                     <>
-                        <Link to="/register" id="header__navber-btn-register" className="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Đăng ký</Link>
-                        <Link to="/login" id="header__nav-btn-login" className="header__navbar-item header__navbar-item--strong">Đăng nhập</Link>
+                        <Link to="/register"
+                            className="header__navbar-item header__navbar-item--strong header__navbar-item--separate"
+                            onClick={() => { onEnableFormRegister() }}
+                        >Đăng ký</Link>
+                        <Link to="/login"
+                            onClick={() => { onEnableFormLogin() }}
+                            className="header__navbar-item header__navbar-item--strong"
+
+                        >Đăng nhập</Link>
                     </> :
                     <li className="header__navbar-item header__navbar-user">
                         {/* <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" className="header__navbar-uer-img" /> */}
-                        <span className="header__navbar-uer-name">{user.username}</span>
+                        <span className="header__navbar-uer-name">{userName.UserName}</span>
 
                         <ul className="header__navbar-user-menu">
                             {/* <li className="header__navbar-user-item">
@@ -118,7 +151,7 @@ function HeaderNavbar(props) {
                                 <Link to="/cart">Đơn mua</Link>
                             </li>
                             <li className="header__navbar-user-item header__navbar-user-item--sparate">
-                                <Link to="/logout">Đăng xuất</Link>
+                                <Link to='/login' onClick={onLogout}>Đăng xuất</Link>
                             </li>
                         </ul>
                     </li>

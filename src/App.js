@@ -14,6 +14,7 @@ const CartDetailContainer = React.lazy(() => import('./containers/CartDetailCont
 const ProductDetailPage = React.lazy(() => import('./containers/ProductDetailPage'))
 const RegistPage = React.lazy(() => import('./containers/RegistPage'))
 const LoginPage = React.lazy(() => import('./containers/LoginPage'))
+
 function App() {
 
   const dispatch = useDispatch()

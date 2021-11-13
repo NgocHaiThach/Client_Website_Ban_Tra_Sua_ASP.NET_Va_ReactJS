@@ -145,7 +145,7 @@ img {
 }
 
 .product__title {
-    margin-top: 0;
+    margin-top: 3px;
     font-size: 24px;
 }
 
@@ -156,7 +156,6 @@ img {
 .product__price {
     font-size: 18px;
     padding: 32px 0 12px 0;
-    
 }
 
 .product__price span {
@@ -208,14 +207,11 @@ img {
 
 .size-sugar__item,
 .size-ice__item {
+    font-size: 16px;
     display: flex;
     padding: 28px 30px;
     align-items: center;
-}
-.size-sugar__item label,
-.size-ice__item label {
-    font-size: 16px;
-    padding-left: 4px;
+    cursor: pointer;
 }
 
 .size-sugar__title,
@@ -241,7 +237,7 @@ img {
 .add-to-cart,
 .like {
     background: var(--primary-color);
-    padding: 1.2em 1.5em;
+    padding: 1.2em 0.5em;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;
@@ -282,11 +278,35 @@ img {
 }
 .action {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .action-select-toping {
     margin-left: 25px;
+    padding-top: 10px;
+}
+
+.select-display-toping {
+    cursor: pointer;
+    display: flex;
+}
+
+.select-display__title {
+    font-size: 18px;
+}
+
+.select-display__icon {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 8px;
+}
+
+.toping-item {
+    align-items: center;
+    font-size: 12px;
+    background-color: white;
+    padding: 10px;
+    z-index: 2000;
 }
 
 @-webkit-keyframes opacity {
@@ -375,8 +395,6 @@ img {
     top: 5px;
     left: 24px;
     color: #fff;
-} 
+}
 
 /**/
-
-

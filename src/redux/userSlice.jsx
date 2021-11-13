@@ -1,22 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialUser = localStorage.getItem('user')
-// [
-//     {
-//         username: 'ngchai2410@gmail.com',
-//         password: '123456',
-//         repeatPassword: '123456'
-//     }
-// ]
+import cookies from 'react-cookies';
+import jwt_decode from 'jwt-decode';
+
+const tokenCookies = cookies.load('user')
+const userCookies = tokenCookies && jwt_decode(tokenCookies).UserName
+const initialUser = {
+    "UserName": userCookies || null
+    //"UserName": null
+}
+
 const user = createSlice({
     name: 'user',
     initialState: initialUser,
     reducers: {
-        addUser: (state, action) => {
-            state.push(action.payload)
+        login: (state, action) => {
+            return {
+                ...state,
+                "UserName": action.payload
+            }
         },
+        logout: (state,) => {
+            return {
+                ...state,
+                "UserName": null
+            }
+        }
     }
 })
 
 const { reducer, actions } = user
-export const { addUser } = actions
+export const { login, logout } = actions
 export default reducer

@@ -2,46 +2,53 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import LoginForm from '../../components/LoginForm';
-import { addUser } from '../../redux/userSlice';
-import callApi from '../../utils/RequestApi';
-import cookies from 'react-cookie'
+import { login, logout } from '../../redux/userSlice';
+import RequestApi from '../../utils/RequestApi';
+import cookies from 'react-cookies';
+import { useHistory } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
 
 LoginPage.propTypes = {
 };
 
 function LoginPage(props) {
+    const history = useHistory()
     const dispath = useDispatch()
-    const handleOnSubmit = (data) => {
+    const loginFaild = false
+    const handleOnSubmit = async (data) => {
 
-        callApi('login', 'POST', {
-            username: data.username,
-            password: data.password,
-        })
-            .then(res => {
-                if (res.status === 201) {
-                    //localStorage.setItem('access_token', res.body.access_token);
-                    console.log('dang nhap thanh cong')
-                    // cookies.save('access_token', res.body.access_token)
-
-                }
-                else {
-                    console.log('dawng nhap that bai')
-                }
-                // console.log('trang thai', res.status)
+        try {
+            await RequestApi('api/token', 'POST', {
+                username: data.username,
+                password: data.password,
             })
-        //const action = addUser(data)
-        //dispath(action)
-        // cookies.save('user', user.data)
-        console.log('data2', data)
-        localStorage.setItem('user', data)
-    }
+                .then(res => {
+                    // console.log('res', res)
+                    if (res.status === 200) {
 
-    const a = callApi('http://trungdung.somee.com/menu', 'GET')
-    console.log('api dung', a)
+                        cookies.save('user', res.data.token)
+                        const action = login(jwt_decode(res.data.token).UserName)
+                        dispath(action)
+
+                    }
+                    else if (res.status === 400) {
+                        console.log('dang nhap that bai')
+                        loginFaild = true
+                    }
+                })
+                .catch(err => { console.log("aaaaa", { err }) })
+            if (loginFaild === false) {
+                history.push('/home/all')
+            }
+        }
+        catch (err) {
+            alert(err.response)
+        }
+    }
 
     return (
         <div>
-            <LoginForm handleOnSubmit={handleOnSubmit} />
+            <LoginForm handleOnSubmit={handleOnSubmit} loginFaild={loginFaild} />
         </div>
     );
 }
