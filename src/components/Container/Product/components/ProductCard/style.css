@@ -9,19 +9,19 @@
     transition: transform linear 0.1s;
     will-change: transform;
     -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
 
 .home-product-item:hover {
     transform: translateY(-1px);
     box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
-
 }
 
 .home-product-item__img {
     /* background-image: url(https://img.abaha.vn/photos/resized/320x/83-1591788607-myphamohui-lgvina.png); */
     padding-top: 100%;
     background-repeat: no-repeat;
-    background-position: center;  
+    background-position: center;
     background-size: cover;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
@@ -44,7 +44,7 @@
 
 .home-product-item__price {
     display: flex;
- 
+
     align-items: baseline;
     flex-wrap: wrap;
 }
@@ -85,7 +85,6 @@ i.home-product-item__like-icon-fill {
     color: #f63d30;
 }
 
-
 .home-product-item__rating {
     font-size: 0.8rem;
     color: #d5d5d5;
@@ -112,7 +111,6 @@ i.home-product-item__like-icon-fill {
     font-weight: 300;
 }
 
-
 .home-product-item__favourite {
     position: absolute;
     top: 10px;
@@ -123,8 +121,8 @@ i.home-product-item__like-icon-fill {
     font-weight: 500;
     line-height: 1.6rem;
     padding-right: 6px;
-    border-top-right-radius: 3px ;
-    border-bottom-right-radius: 3px ;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .home-product-item__favourite span {
@@ -166,8 +164,7 @@ i.home-product-item__like-icon-fill {
     border-width: 0 20px 4px;
     border-style: solid;
     color: rgba(255, 216, 64, 1);
-    border-color: transparent currentColor transparent currentColor ;
-
+    border-color: transparent currentColor transparent currentColor;
 }
 
 .home-product-item__sale-off-percent {
@@ -175,16 +172,15 @@ i.home-product-item__like-icon-fill {
     top: 3px;
     color: #ee4d2d;
     font-weight: 600;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     line-height: 1.2rem;
 }
 
 .home-product-item__sale-off-lable {
     position: relative;
     top: 5px;
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
     line-height: 1.3rem;
     color: var(--white-color);
     font-weight: 500;
-    
 }

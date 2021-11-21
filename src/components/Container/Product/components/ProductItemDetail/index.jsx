@@ -4,6 +4,7 @@ import { formatPrice } from '../../../../../utils/FormatPrice';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import RequestApi from '../../../../../utils/RequestApi'
+import { accessToken, idUser } from '../../../../../utils/getToken';
 
 ProductItemDetail.propTypes = {};
 
@@ -12,6 +13,10 @@ export let number = 0
 function ProductItemDetail(props) {
 
     const { item, handleAddItemToCartClick } = props
+    //console.log('item price', item.price)
+    const [productPrice, setProductPrice] = useState(29000)
+
+
 
     //trạng thái số lượng 
     let [quantity, setQuantity] = useState(1)
@@ -33,8 +38,18 @@ function ProductItemDetail(props) {
     //truyền state ra 
     number = quantity
 
-    const onAddToCart = (productValues) => {
-        handleAddItemToCartClick(productValues)
+    const onAddToCart = (idProduct, quantity, size, ice, sugar, topping) => {
+        const valuesAdd = {
+            cartId: idUser,
+            productId: idProduct,
+            quantily: quantity,
+            sizeName: size,
+            ice: ice,
+            sugar: sugar,
+            toppingId: topping,
+            accessToken: accessToken
+        }
+        handleAddItemToCartClick(valuesAdd)
 
         toast.info('Thêm vào giỏ hàng thành công', {
             position: "bottom-right",
@@ -123,13 +138,23 @@ function ProductItemDetail(props) {
     ]
 
     // xử lý topping 
-    const [selectTopping, setSelectTopping] = useState()
+    const [selectTopping, setSelectTopping] = useState(null)
 
+    useEffect(() => {
+        if (active === 0) {
+            setProductPrice(29000)
+        }
+        else if (active === 1) {
+            setProductPrice(35000)
+        }
+        else if (active === 2) {
+            setProductPrice(41000)
+        }
+    }, [active])
 
 
     return (
         <>
-
             {item &&
                 <div className="wrapper row">
 
@@ -146,7 +171,12 @@ function ProductItemDetail(props) {
                             <h3 className="product__title">{item.productName}</h3>
 
                             <p className="product__description">{item.Description}</p>
-                            <h4 className="product__price">Đơn Giá: <span>{formatPrice(item.price)}đ</span></h4>
+                            <h4 className="product__price">
+                                Đơn Giá:
+                                <span>
+                                    {formatPrice(productPrice)}đ
+                                </span>
+                            </h4>
 
                             <h5 className="sizes">sizes:
                                 {/* <span onClick={() => onSizeClick()} className="size size__active">s</span>
@@ -165,9 +195,22 @@ function ProductItemDetail(props) {
                                 <h5 className="quantity__title">số lượng:
                                 </h5>
                                 <div className="quantity__number">
-                                    <span onClick={() => onDecreas()} className="quantity__number-minus">- </span>
-                                    <input className="quantity__number-text" type="text" value={quantity} />
-                                    <span onClick={() => onAdd()} className="quantity__number-plus"> +</span>
+                                    <button
+                                        onClick={() => onDecreas()}
+                                        className="quantity__number-minus"
+                                    >
+                                        -
+                                    </button>
+
+                                    <input
+                                        className="quantity__number-text"
+                                        type="text" value={quantity} />
+
+                                    <button
+                                        onClick={() => onAdd()}
+                                        className="quantity__number-plus">
+                                        +
+                                    </button>
                                 </div>
                             </div>
                             <div className="size-ice">
@@ -201,7 +244,7 @@ function ProductItemDetail(props) {
 
                             <div className="action">
                                 <button
-                                    onClick={() => { onAddToCart(item,) }}
+                                    onClick={() => { onAddToCart(item.productId, quantity, sizes[active].name, checkedIce, checkedSugar, selectTopping) }}
                                     className="add-to-cart btn btn-default"
                                     type="button">
                                     Thêm vào giỏ
@@ -235,18 +278,6 @@ function ProductItemDetail(props) {
                                             </div>
                                         ))}
                                     </div>
-                                    {/* </select> */}
-
-                                    {/* <select id="test">
-                                        <option checked value="1">toping</option>
-                                        <option value="2">toping</option>
-                                        <option value="3">toping</option>
-                                        <option value="4">toping</option>
-                                        <option value="5">toping</option>
-                                        <option value="6">toping</option>
-                                        <option value="7">toping</option>
-                                        <option value="8">toping</option>
-                                    </select> */}
                                 </div>
                             </div>
                         </div>

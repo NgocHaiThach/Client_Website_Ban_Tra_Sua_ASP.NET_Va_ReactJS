@@ -5,12 +5,13 @@ import { formatPrice } from '../../../../../utils/FormatPrice';
 CartHeaderCard.propTypes = {};
 
 function CartHeaderCard(props) {
-    const { item, handleDeleteItemInCart } = props
-
+    let item = props.item
+    let handleDeleteItemInCart = props.handleDeleteItemInCart
 
     const onDeleteItem = (id) => {
         if (handleDeleteItemInCart) handleDeleteItemInCart(id)
     }
+
     return (
         <>
             <img src={item.product.image} alt={item.product.productName} className="header__cart-img" />
@@ -27,17 +28,11 @@ function CartHeaderCard(props) {
                     <div className="header__cart-size">
                         Size: {item.sizeName}
                     </div>
-                    {/* <br /> */}
-
-                    {/* <span className="header__cart-description">
-                        Toppings: {item.topping.toppingName}
-                    </span> */}
-
-                    <span onClick={() => { onDeleteItem(item.id) }} className="header__cart-item-remove">Xóa</span>
+                    <span onClick={() => { onDeleteItem(item.dishId) }} className="header__cart-item-remove">Xóa</span>
                 </div>
                 <div className="header__cart-description">
                     {/* Size: {item.sizeName} */}
-                    Toppings: {item.topping.toppingName}
+                    Toppings: {item.topping === null ? '' : item.topping.toppingName}
                 </div>
             </div>
         </>

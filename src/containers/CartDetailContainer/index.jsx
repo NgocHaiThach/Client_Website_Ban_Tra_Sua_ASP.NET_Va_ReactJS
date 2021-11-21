@@ -5,6 +5,9 @@ import { ToastContainer } from 'react-toastify';
 import { addCart, removeCart, descreaseCart } from '../HeaderCartContainer/cartSlice';
 import { addQuantity, decreaseQuantity, deleteItemInCart } from '../../redux/apiCall';
 import { addQuantitySuccess } from '../../redux/cartSlice';
+import { accessToken } from '../../utils/getToken';
+
+
 
 CartDetailContainer.propTypes = {};
 
@@ -17,15 +20,15 @@ function CartDetailContainer(props) {
     }
 
     const handleDeleteItemInCart = (id) => {
-        deleteItemInCart(dispatch, id)
+        deleteItemInCart(dispatch, id, accessToken)
     }
 
     const handleDecreaseInCart = (item) => {
-        decreaseQuantity(dispatch, item)
-        console.log('tru')
+        decreaseQuantity(dispatch, item, accessToken)
+
     }
     const handleAddInCart = (item) => {
-        addQuantity(dispatch, item)
+        addQuantity(dispatch, item, accessToken)
         console.log('cong')
     }
     return (

@@ -18,9 +18,6 @@ function RegistPage(props) {
                 if (res.status === 201) {
                     history.push('/login');
                 }
-                // else {
-                //     console.log('dang ky that bai')
-                // }
             })
     }
     return (

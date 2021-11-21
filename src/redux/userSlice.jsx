@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import cookies from 'react-cookies';
 import jwt_decode from 'jwt-decode';
+import { accessToken, } from "../utils/getToken";
 
-const tokenCookies = cookies.load('user')
-const userCookies = tokenCookies && jwt_decode(tokenCookies).UserName
+const userCookies = accessToken && jwt_decode(accessToken).UserName
 const initialUser = {
     "UserName": userCookies || null
     //"UserName": null

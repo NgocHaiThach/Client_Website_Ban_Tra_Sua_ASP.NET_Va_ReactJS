@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { number } from "../components/Container/Product/components/ProductItemDetail";
 import { idLastItem } from "../containers/ProductDetailPage";
-
+import RequestApi from "../utils/RequestApi";
+import cookies from 'react-cookies';
 
 const carts = createSlice({
-    name: 'products',
+    name: 'carts',
     initialState: {
         carts: [],
         isFetching: false,
@@ -18,9 +20,13 @@ const carts = createSlice({
         },
         decreaseQuantitySuccess: (state, action) => {
             state.isFetching = false
-            const index = state.carts.findIndex(item => item.product.name === action.payload.product.name)
-            if (index !== -1) {
-                state.carts[index].quantity -= 1
+            // const index = state.carts.findIndex(item => item.product.name === action.payload.product.name)
+            // if (index !== -1) {
+            //     state.carts[index].quantity -= 1
+            // }
+            const index = state.carts.dishCarts.findIndex(item => item.dishId === action.payload.dishId)
+            if (state.carts.dishCarts[index].quantily > 1) {
+                state.carts.dishCarts[index].quantily -= 1
             }
         },
         decreaseQuantityFailure: (state) => {
@@ -35,10 +41,8 @@ const carts = createSlice({
         },
         addQuantitySuccess: (state, action) => {
             state.isFetching = false
-            const index = state.carts.findIndex(item => item.product.name === action.payload.product.name)
-            if (index !== -1) {
-                state.carts[index].quantity += 1
-            }
+            const index = state.carts.dishCarts.findIndex(item => item.dishId === action.payload.dishId)
+            state.carts.dishCarts[index].quantily += 1
         },
         addQuantityFailure: (state) => {
             state.isFetching = false
@@ -69,22 +73,7 @@ const carts = createSlice({
         },
         addOneItemToCartSuccess: (state, action) => {
             state.isFetching = false
-            let id = 0
-            if (idLastItem === undefined) {
-                id = 1
-            }
-            else {
-                id = idLastItem.id + 1
-            }
-
-            //number là state của số lượng ở trang detail product sẽ add vào
-            //isLastItem là id của item cuối cùng của giỏ hàng
-            const valueAdd = {
-                id: id,
-                product: action.payload.product,
-                quantity: number
-            }
-            state.carts.push(valueAdd)
+            // state.carts.dishCarts.push(action.payload)
 
         },
         addOneItemToCartFailure: (state) => {
@@ -98,9 +87,10 @@ const carts = createSlice({
             state.error = false
         },
         deleteCartSuccess: (state, action) => {
+
             state.isFetching = false
-            const index = state.carts.findIndex(item => item.id === action.payload)
-            state.carts.splice(index, 1)
+            const index = state.carts.dishCarts.findIndex(item => item.dishId === action.payload)
+            state.carts.dishCarts.splice(index, 1)
         },
         deleteCartFailure: (state) => {
             state.isFetching = false

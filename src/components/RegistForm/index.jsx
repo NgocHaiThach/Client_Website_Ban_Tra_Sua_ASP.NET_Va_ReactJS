@@ -4,7 +4,6 @@ import './style.css'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
-import { displayFormRegis } from '../Header/HeaderNavbar';
 import { Link } from 'react-router-dom';
 
 RegistForm.propTypes = {};
@@ -28,10 +27,8 @@ function RegistForm(props) {
         console.log(data)
     }
 
-    const [displayRegis, setDiplayRegis] = useState(displayFormRegis)
-
     return (
-        <div className="modal" style={displayRegis ? { display: 'flex' } : { display: 'none' }}>
+        <div className="modal" >
             <div className="modal__overlay">
             </div>
             <div className="modal__body">
@@ -88,14 +85,15 @@ function RegistForm(props) {
                             <Link
                                 to="/"
                                 className="btn auth-form__controls-back btn--normal"
-                                onClick={() => { setDiplayRegis(false) }}
                             >
                                 TRỞ LẠI
                             </Link>
                             <Link
                                 to='/login'
                                 type="submit"
-                                className="btn btn--primary">ĐĂNG KÝ
+                                className="btn btn--primary"
+                            >
+                                ĐĂNG KÝ
                             </Link>
                         </div>
                     </form>

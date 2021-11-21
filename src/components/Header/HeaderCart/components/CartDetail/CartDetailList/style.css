@@ -64,6 +64,22 @@
     padding-left: 8px;
 }
 
+.product-quantity__number-minus {
+    background-color: var(--white-color);
+    border-radius: 5px;
+    padding-right: 8px;
+    border: 1px solid #333;
+    margin-right: 5px;
+}
+
+.product-quantity__number-plus {
+    background-color: var(--white-color);
+    border-radius: 5px;
+    padding-left: 4px;
+    border: 1px solid #333;
+    margin-left: 5px;
+}
+
 .product-quantity__number-minus,
 .product-quantity__number-plus {
     font-size: 18px;
@@ -72,9 +88,10 @@
 
 .product-item__quantity input {
     width: 40px;
-    height: 20px;
+    height: 24px;
     font-size: 18px;
     text-align: center;
+    line-height: 1.1;
 }
 
 .product-item__line-price {

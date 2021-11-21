@@ -9,11 +9,10 @@ function CartDetailResult(props) {
     const showTotal_SubAmount = (cartList) => {
         let total = 0
         for (let i = 0; i < cartList.length; i++) {
-            total += (+cartList[i].dishPrice) * (+cartList[i].quantily)
+            total += (cartList[i].product.price + cartList[i].size.price) * cartList[i].quantily
         }
         return total
     }
-
 
     return (
         <div className="totals">

@@ -5,7 +5,16 @@ CartDetailCard.propTypes = {};
 
 function CartDetailCard(props) {
     const { item, handleDeleteItemInCart, handleDecreaseInCart, handleAddInCart } = props
-    const totalPrice = (+item.dishPrice * +item.quantily)
+    const productPrice = +item.product.price
+    const sizePrice = +item.size.price
+    //const toppingPrice = +item.topping.price
+    const quantity = +item.quantily
+    const isTopping = item.topping
+
+    const totalPrice = isTopping ?
+        ((productPrice + sizePrice) * quantity)
+        :
+        ((productPrice + sizePrice) * quantity)
 
     const clickDeleteItem = (id) => {
         if (handleDeleteItemInCart) {
@@ -30,27 +39,29 @@ function CartDetailCard(props) {
                 </div>
                 <div className="col l-3 product-details">
                     <span className="product-item__title">{item.product.productName}</span>
-                    <p className="product-item__description">Size: {item.sizeName} + {item.topping.toppingName}</p>
+                    <p className="product-item__description">Size: {item.sizeName}  {item.topping === null ? '' : `+ ${item.topping.toppingName} (+${formatPrice(item.topping.price)}đ)`}</p>
                 </div>
-                <div className="col l-2 product-item__price">{formatPrice(item.product.price)}đ</div>
+                <div className="col l-2 product-item__price">{formatPrice(productPrice + sizePrice)}đ</div>
                 <div className="col l-1 product-item__quantity">
                     <div className="product-quantity__number">
-                        <span
+                        <button
                             className="product-quantity__number-minus"
                             onClick={() => { onDecreaseQuantity(item) }}
-                        >- </span>
+                        >-
+                        </button>
                         <input className="product-quantity__number-text" type="text" value={item.quantily} />
-                        {/* <span>{quantity}</span> */}
-                        <span
+
+                        <button
                             className="product-quantity__number-plus"
                             onClick={() => { onAddQuantity(item) }}
-                        > +</span>
+                        > +
+                        </button>
                     </div>
                 </div>
                 <div className="col l-1 product-item__removal">
                     <span
                         className="remove__product-item"
-                        onClick={() => { clickDeleteItem(item.id) }}
+                        onClick={() => { clickDeleteItem(item.dishId) }}
                     >
                         Xoá
                     </span>

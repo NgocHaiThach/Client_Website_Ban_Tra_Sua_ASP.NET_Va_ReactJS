@@ -24,10 +24,9 @@ function LoginForm(props) {
         e.preventDefault();
         if (handleOnSubmit) handleOnSubmit(data)
     }
-    const [displayLogin, setDisplayLogin] = useState(displayFormLogin)
 
     return (
-        <div className="modal" style={displayLogin ? { display: 'flex' } : { display: 'none' }}>
+        <div className="modal" >
             <div className="modal__overlay">
             </div>
             <div className="modal__body">
@@ -76,10 +75,15 @@ function LoginForm(props) {
                             <Link
                                 to="/"
                                 className="btn auth-form__controls-back btn--normal"
-                                onClick={() => setDisplayLogin(false)}
+
                             >TRỞ LẠI
                             </Link>
-                            <button type="submit" className="btn btn--primary">ĐĂNG NHẬP</button>
+                            <button
+                                type="submit"
+                                className="btn btn--primary"
+                            >
+                                ĐĂNG NHẬP
+                            </button>
                         </div>
                     </form>
                     <div className="auth-form__socials">

@@ -12,5 +12,4 @@ export default function callApi(endpoint, method = 'GET', body, accessToken) {
         .catch(err => {
             console.error(err)
         })
-
 }

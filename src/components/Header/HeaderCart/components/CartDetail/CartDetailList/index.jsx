@@ -7,39 +7,9 @@ import CartDetailTitle from '../CartDetailTitle';
 
 import './style.css'
 
-CartDeatilList.propTypes = {
-    cartList: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            product: PropTypes.shape({
-                idCategory: PropTypes.number.isRequired,
-                name: PropTypes.string,
-                image: PropTypes.string,
-                price: PropTypes.string,
-                description: PropTypes.string,
-                inventory: PropTypes.number,
-                rating: PropTypes.number,
-            }),
-            quantity: PropTypes.number,
-        })),
-};
+CartDeatilList.propTypes = {};
 
-CartDeatilList.defaultProps = {
-    cartList: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: null,
-            product: PropTypes.shape({
-                idCategory: null,
-                name: '',
-                image: '',
-                price: '',
-                description: '',
-                inventory: null,
-                rating: null,
-            }),
-            quantity: null,
-        })),
-}
+CartDeatilList.defaultProps = {}
 
 function CartDeatilList(props) {
     const { cartList, handleDeleteItemInCart, handleDecreaseInCart, handleAddInCart } = props
@@ -68,8 +38,8 @@ function CartDeatilList(props) {
                     </div>
 
                     <div className="row">
-                        {cartList.map((cart) => (
-                            <div key={cart.id} className="col l-12">
+                        {cartList.map((cart, index) => (
+                            <div key={index} className="col l-12">
                                 <CartDetailCard
                                     item={cart}
                                     handleDeleteItemInCart={handleDeleteItemInCart}

@@ -10,9 +10,6 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/userSlice';
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-export let displayFormLogin = false
-export let displayFormRegis = false
-
 HeaderNavbar.propTypes = {};
 
 function HeaderNavbar(props) {
@@ -25,16 +22,8 @@ function HeaderNavbar(props) {
         cookies.remove('user')
         const action = logout()
         dispatch(action);
-        displayFormLogin = true
     }
 
-    const onEnableFormLogin = () => {
-        displayFormLogin = true
-    }
-
-    const onEnableFormRegister = () => {
-        displayFormRegis = true
-    }
 
     return (
         <nav className="header__navbar hide-on-mobile-tablet">
@@ -128,13 +117,14 @@ function HeaderNavbar(props) {
                     <>
                         <Link to="/register"
                             className="header__navbar-item header__navbar-item--strong header__navbar-item--separate"
-                            onClick={() => { onEnableFormRegister() }}
-                        >Đăng ký</Link>
-                        <Link to="/login"
-                            onClick={() => { onEnableFormLogin() }}
-                            className="header__navbar-item header__navbar-item--strong"
 
-                        >Đăng nhập</Link>
+                        >Đăng ký</Link>
+
+                        <Link to="/login"
+                            className="header__navbar-item header__navbar-item--strong"
+                        >
+                            Đăng nhập
+                        </Link>
                     </> :
                     <li className="header__navbar-item header__navbar-user">
                         {/* <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" className="header__navbar-uer-img" /> */}
@@ -151,7 +141,7 @@ function HeaderNavbar(props) {
                                 <Link to="/cart">Đơn mua</Link>
                             </li>
                             <li className="header__navbar-user-item header__navbar-user-item--sparate">
-                                <Link to='/login' onClick={onLogout}>Đăng xuất</Link>
+                                <a href='/login' onClick={onLogout}>Đăng xuất</a>
                             </li>
                         </ul>
                     </li>

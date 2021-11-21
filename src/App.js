@@ -36,8 +36,10 @@ function App() {
             <Route exact path="/register" component={RegistPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route component={NotFound} />
+
           </Switch>
           <Footer />
+
         </BrowserRouter>
       </Suspense>
     </div>

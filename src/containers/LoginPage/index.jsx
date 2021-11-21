@@ -7,6 +7,7 @@ import RequestApi from '../../utils/RequestApi';
 import cookies from 'react-cookies';
 import { useHistory } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
+import { getCarts } from '../../redux/apiCall';
 
 LoginPage.propTypes = {
 };
@@ -29,7 +30,7 @@ function LoginPage(props) {
                         cookies.save('user', res.data.token)
                         const action = login(jwt_decode(res.data.token).UserName)
                         dispath(action)
-
+                        getCarts(dispath, res.data.token, jwt_decode(res.data.token).UserId)
                     }
                     else if (res.status === 400) {
                         console.log('dang nhap that bai')

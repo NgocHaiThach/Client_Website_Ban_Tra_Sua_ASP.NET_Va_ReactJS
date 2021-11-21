@@ -99,12 +99,21 @@ img {
 .quantity__number {
     padding-top: 18px;
     margin-left: 14px;
+    justify-content: space-around;
 }
 .quantity__number-minus {
+    background-color: var(--white-color);
+    border-radius: 5px;
     padding-right: 8px;
+    border: 1px solid #333;
+    margin-right: 5px;
 }
 .quantity__number-plus {
-    padding-left: 8px;
+    background-color: var(--white-color);
+    border-radius: 5px;
+    padding-left: 4px;
+    border: 1px solid #333;
+    margin-left: 5px;
 }
 
 .quantity__number-minus,
@@ -161,6 +170,7 @@ img {
 .product__price span {
     color: var(--primary-color);
     text-transform: lowercase;
+    margin-left: 10px;
 }
 
 .sizes {

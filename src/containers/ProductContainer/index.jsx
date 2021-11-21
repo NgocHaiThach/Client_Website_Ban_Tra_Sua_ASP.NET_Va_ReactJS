@@ -9,21 +9,17 @@ import jwt_decode from 'jwt-decode';
 ProductContainer.propTypes = {};
 
 function ProductContainer(props) {
-    // const usename = cookies.load('user')
-    // console.log('username', jwt_decode(usename).UserId)
 
+    const history = useHistory()
     const productList = useSelector(state => state.products.products)
 
-
-    // const location = useLocation()
-    // console.log('location', location.pathname.split("/")[2])
-    const history = useHistory()
-
+    console.log('sp', productList)
     const handleProductItemClick = (product) => {
         const slug = toSlug(product.productName)
         const detailProductUrl = `/product/${slug}`
         history.push(detailProductUrl)
     }
+
     return (
         <div>
             <ProductList productList={productList} onProductItemClick={handleProductItemClick} />
