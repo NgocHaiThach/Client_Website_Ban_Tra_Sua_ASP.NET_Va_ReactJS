@@ -178,7 +178,7 @@ function ProductItemDetail(props) {
                                 </span>
                             </h4>
 
-                            <h5 className="sizes">sizes:
+                            <h5 className="sizes">size:
                                 {/* <span onClick={() => onSizeClick()} className="size size__active">s</span>
                             <span className="size ">m</span>
                             <span className="size">l</span> */}

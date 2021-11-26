@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { formatPrice } from '../../../../../../utils/FormatPrice';
-
+import { idUser } from '../../../../../../utils/getToken'
 CartDetailResult.propTypes = {};
 
 function CartDetailResult(props) {
@@ -32,7 +33,7 @@ function CartDetailResult(props) {
                 <label>Tổng Cộng:</label>
                 <div className="totals-value total-grand">{formatPrice(showTotal_SubAmount(cartList) - 10000 + 15000)}đ</div>
             </div>
-            <button className="btn col l-12 checkout">Thanh Toán</button>
+            <Link to={`payment/${idUser}`} className="btn col l-12 checkout">Thanh Toán</Link>
         </div>
     );
 }

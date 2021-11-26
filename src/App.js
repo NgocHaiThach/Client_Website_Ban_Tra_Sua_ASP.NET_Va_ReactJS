@@ -12,6 +12,8 @@ import { getProducts } from "./redux/apiCall";
 const HomePage = React.lazy(() => import('./containers/HomePage'))
 const CartDetailContainer = React.lazy(() => import('./containers/CartDetailContainer'))
 const ProductDetailPage = React.lazy(() => import('./containers/ProductDetailPage'))
+const BillPage = React.lazy(() => import('./containers/BillPage'))
+const PaymentPage = React.lazy(() => import('./containers/PaymentPage'))
 const RegistPage = React.lazy(() => import('./containers/RegistPage'))
 const LoginPage = React.lazy(() => import('./containers/LoginPage'))
 
@@ -33,6 +35,8 @@ function App() {
             <Route exact path="/home/all" component={HomePage} />
             <Route exact path="/product/:slug" component={ProductDetailPage} />
             <Route exact path="/cart" component={CartDetailContainer} />
+            <Route exact path="/bill/:iduser" component={BillPage} />
+            <Route exact path="/payment/:iduser" component={PaymentPage} />
             <Route exact path="/register" component={RegistPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route component={NotFound} />

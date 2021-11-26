@@ -27,7 +27,7 @@ function Container(props) {
                             <div className="product-propose_title-name active">BÁN CHẠY NHẤT</div>
                         </div>
                         <ProductContainer />
-                        <Pagination />
+                        {/* <Pagination /> */}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,109 @@
+.bill__title {
+    font-size: 34px;
+    margin-top: 30px;
+    text-align: center;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: white;
+    padding: 15px 20px 15px 20px;
+    max-width: 756px;
+    align-items: center;
+    margin: 40px auto 0 auto;
+}
+
+.bill__border {
+    background-color: #fff4f4;
+    max-width: 756px;
+    margin: 0 auto 50px auto;
+}
+
+.bill__description {
+    padding: 30px 30px 0 30px;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.bill__id {
+    padding: 20px 30px 0 30px;
+    font-size: 22px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.bill__table {
+    font-size: 20px;
+    /* display: flex; */
+    padding: 30px 8px 0 8px;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.table-body__title {
+    padding-bottom: 10px;
+}
+
+/* .table-body__title:first-child {
+    padding-left: 5px;
+} */
+
+.table-body__item {
+    padding-bottom: 10px;
+    border: 1px solid rgb(197, 196, 196);
+}
+
+.table-body__item:first-child {
+    padding-left: 5px;
+}
+.table-body__item:last-child {
+    padding-left: 5px;
+}
+
+.table-body__item-name {
+    font-size: 18px;
+    line-height: 1.4;
+}
+.w-30 {
+    width: 30%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.bill__addres {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+.bill__addres-title {
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.bill__addres-name,
+.bill__addres-home-number,
+.bill__addres-home-ward,
+.bill__addres-home-distric,
+.bill__addres-home-province,
+.bill__addres-home-phone {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+.bill__addres-home-phone a {
+    color: var(--primary-color);
+}
+
+.bill__thanks {
+    font-size: 18px;
+    padding-left: 30px;
+    padding-bottom: 50px;
+}

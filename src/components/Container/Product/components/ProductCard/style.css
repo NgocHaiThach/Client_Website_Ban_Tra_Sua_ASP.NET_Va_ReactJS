@@ -28,7 +28,7 @@
 }
 
 .home-product-item__name {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 400;
     color: var(--text-color);
     line-height: 1.8rem;
@@ -40,17 +40,18 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
+    text-align: center;
 }
 
 .home-product-item__price {
     display: flex;
-
+    justify-content: center;
     align-items: baseline;
     flex-wrap: wrap;
 }
 
 .home-product-item__price-old {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     margin-left: 10px;
     color: #666;
     text-decoration: line-through;
