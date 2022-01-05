@@ -1,19 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../../utils/FormatPrice";
-import { showRating } from "../../../../../utils/Rating";
+import { toSlug } from "../../../../../utils/ToSlug";
+
 import "./style.css";
 
 ProductCard.propTypes = {};
 
 function ProductCard(props) {
-  const { product, onItemClick } = props;
+  const { product, } = props;
 
-  const handleItemClick = () => {
-    if (onItemClick) onItemClick(product);
-  };
+  const slug = toSlug(product.productName)
 
   return (
-    <a onClick={handleItemClick} className="home-product-item">
+    <Link
+      to={`/product/${slug}`}
+      className="home-product-item">
       <div
         className="home-product-item__img"
         style={{
@@ -46,7 +48,7 @@ function ProductCard(props) {
         <i className="fas fa-check"></i>
         <span>Yêu thích</span>
       </div>
-    </a>
+    </Link>
   );
 }
 

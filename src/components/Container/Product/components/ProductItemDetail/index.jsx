@@ -156,9 +156,8 @@ function ProductItemDetail(props) {
     return (
         <>
             {item &&
-                <div className="wrapper row">
-
-                    <div className="col l-6">
+                <div className="wrapper row col c-12">
+                    <div className="col l-6 m-6 c-12">
                         <div className="preview-pic tab-content">
                             <div className="tab-pane active" id="pic-1">
                                 <img
@@ -166,9 +165,16 @@ function ProductItemDetail(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col l-6">
+                    <div className="col l-6 m-6 c-12">
                         <div className="product__detail">
                             <h3 className="product__title">{item.productName}</h3>
+                            {/* <p>Vị trà đậm và thơm kết hợp hòa quyện với lớp kem sữa mặn.
+                                <br />
+                                Lượng đường (g): 22.7 (S), 22.7 (M), 31.5 (L).
+                                <br />
+                                Caffeine: 40.2 (S), 46.7 (M), 68.4 (L).
+                                <br />
+                                Calories: 220.8 (S), 266.1(M), 360.9 (L)</p> */}
 
                             <p className="product__description">{item.Description}</p>
                             <h4 className="product__price">
@@ -179,9 +185,6 @@ function ProductItemDetail(props) {
                             </h4>
 
                             <h5 className="sizes">size:
-                                {/* <span onClick={() => onSizeClick()} className="size size__active">s</span>
-                            <span className="size ">m</span>
-                            <span className="size">l</span> */}
                                 {sizes.map((size, index) => (
                                     <div key={index} style={{ display: 'inline-block' }}>
                                         <span
@@ -204,7 +207,9 @@ function ProductItemDetail(props) {
 
                                     <input
                                         className="quantity__number-text"
-                                        type="text" value={quantity} />
+                                        type="text"
+                                        value={quantity}
+                                    />
 
                                     <button
                                         onClick={() => onAdd()}
@@ -214,7 +219,7 @@ function ProductItemDetail(props) {
                                 </div>
                             </div>
                             <div className="size-ice">
-                                <p className="size-ice__title">Ice:</p>
+                                <p className="size-ice__title">Đá:</p>
                                 {percentIce.map((percent, index) => (
                                     <span key={index} className="size-ice__item">
                                         <input
@@ -228,7 +233,7 @@ function ProductItemDetail(props) {
                             </div>
 
                             <div className="size-sugar">
-                                <p className="size-sugar__title">Sugar:</p>
+                                <p className="size-sugar__title">Đường:</p>
 
                                 {percentSuagar.map((percent, index) => (
                                     <span key={index} className="size-sugar__item">

@@ -34,7 +34,7 @@ function CartDetailCard(props) {
         <>
             <div className="product-item">
 
-                <div className="col l-3 product-item__image">
+                <div className="col l-3 product-item__image hide-on-mobile">
                     <img src={item.product.image} />
                 </div>
                 <div className="col l-3 product-details">

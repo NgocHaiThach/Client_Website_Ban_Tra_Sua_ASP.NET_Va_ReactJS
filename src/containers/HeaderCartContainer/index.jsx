@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartHeaderList from '../../components/Header/HeaderCart/components/CartHeaderList';
 import { deleteItemInCart, getCarts } from '../../redux/apiCall';
@@ -19,8 +19,6 @@ function HeaderCartContainer(props) {
     }, [])
 
     const cartList = useSelector(state => state.carts.carts.dishCarts)
-
-    console.log('list', cartList)
 
     const handleDeleteItemInCart = (id) => {
         if (user.UserName) {

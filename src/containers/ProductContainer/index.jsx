@@ -1,28 +1,54 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductList from '../../components/Container/Product/components/ProductList';
-import { toSlug } from '../../utils/ToSlug';
-import cookies from 'react-cookies';
-import jwt_decode from 'jwt-decode';
+import { FormatInput } from '../../utils/FormatInput';
+import { clearInput } from '../../redux/searchSlice'
+import requestApi from '../../utils/RequestApi';
 
 ProductContainer.propTypes = {};
 
 function ProductContainer(props) {
 
-    const history = useHistory()
-    const productList = useSelector(state => state.products.products)
+    const dispatch = useDispatch()
+    const [list, setList] = useState()
+    const input = useSelector(state => state.search)
+    let productList = useSelector(state => state.products.products)
+    const listToSearch = useSelector(state => state.products.products)
 
-    console.log('sp', productList)
-    const handleProductItemClick = (product) => {
-        const slug = toSlug(product.productName)
-        const detailProductUrl = `/product/${slug}`
-        history.push(detailProductUrl)
+    //xu ly search product
+    const handleSearch = () => {
+
+        const val = FormatInput(input)
+        const filter = listToSearch.filter((item) => {
+            const name = FormatInput(item.productName)
+            if (name.includes(val)) {
+                return item
+            }
+        })
+        productList = filter
     }
+
+    handleSearch()
+    //get api lưu vào productList để cho việc hiển thị  
+    // const getProductList = async () => {
+    //     const res = await requestApi('api/products/full', 'GET')
+    //     setList(res.data)
+    // }
+
+    // useEffect(() => {
+    //     getProductList()
+    // }, [])
+
+    // if (input === '') {
+    //     productList = list
+    // }
+
 
     return (
         <div>
-            <ProductList productList={productList} onProductItemClick={handleProductItemClick} />
+            <ProductList
+                productList={productList}
+            />
         </div>
     );
 }

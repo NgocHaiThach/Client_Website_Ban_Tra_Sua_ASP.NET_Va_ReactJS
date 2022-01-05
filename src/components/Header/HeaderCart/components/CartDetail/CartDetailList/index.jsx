@@ -32,14 +32,14 @@ function CartDeatilList(props) {
                 <div className="shopping-cart">
 
                     <div className="row">
-                        <div className="col l-12">
+                        <div className="col l-12 m-12 c-12">
                             <CartDetailTitle />
                         </div>
                     </div>
 
                     <div className="row">
                         {cartList.map((cart, index) => (
-                            <div key={index} className="col l-12">
+                            <div key={index} className="col l-12 m-12 c-12">
                                 <CartDetailCard
                                     item={cart}
                                     handleDeleteItemInCart={handleDeleteItemInCart}
@@ -52,7 +52,7 @@ function CartDeatilList(props) {
                     </div>
 
                     <div className="row">
-                        <div className="col l-12">
+                        <div className="col l-12 m-12 c-12">
                             {showCartDeatilResult(cartList)}
                         </div>
                     </div>

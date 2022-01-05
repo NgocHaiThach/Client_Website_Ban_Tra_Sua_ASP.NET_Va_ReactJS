@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './style.css'
 import { Link } from 'react-router-dom';
-import cookies from 'react-cookies';
 import { formatPrice } from '../../utils/FormatPrice';
+import './style.css';
 
 
 function Bill(props) {
@@ -49,8 +47,8 @@ function Bill(props) {
                         </thead>
                         <tbody>
                             {listCart.map((item, index) => (
-                                <tr>
-                                    <td className="table-body__item-name w-30 table-body__item ">{item.product.productName}</td>
+                                <tr key={index}>
+                                    <td className="table-body__item-name w-30 table-body__item min-width ">{item.product.productName}</td>
                                     <td className="w-20 table-body__item ">{item.quantily}</td>
                                     <td className="w-20 table-body__item ">{item.sizeName}</td>
                                     <td className="w-20 table-body__item">{formatPrice((item.product.price + item.size.price) * item.quantily)}đ</td>
@@ -133,7 +131,7 @@ function Bill(props) {
                     </div>
                 </div>
                 <div className="bill__thanks">
-                    Cảm ơn quý khách <Link to="/"> HDtrasua.vn! </Link>
+                    Cảm ơn quý khách <Link to="/"> Ottel.vn! </Link>
                 </div>
 
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderCartContainer from '../../containers/HeaderCartContainer';
+import HeaderSearchContainer from '../../containers/HeaderSearchContainer';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
 import './style.css'
@@ -14,7 +15,8 @@ function Header(props) {
             <div className="grid wide">
                 <HeaderNavbar />
                 <div className="header-with-search">
-                    <HeaderSearch />
+                    {/* <HeaderSearch /> */}
+                    <HeaderSearchContainer />
                     <HeaderCartContainer />
                 </div>
             </div>

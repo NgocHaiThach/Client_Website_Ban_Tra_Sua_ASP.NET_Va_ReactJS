@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CartDeatilList from '../../components/Header/HeaderCart/components/CartDetail/CartDetailList';
 import { ToastContainer } from 'react-toastify';
-import { addCart, removeCart, descreaseCart } from '../HeaderCartContainer/cartSlice';
+import CartDeatilList from '../../components/Header/HeaderCart/components/CartDetail/CartDetailList';
 import { addQuantity, decreaseQuantity, deleteItemInCart } from '../../redux/apiCall';
-import { addQuantitySuccess } from '../../redux/cartSlice';
 import { accessToken } from '../../utils/getToken';
 
 
@@ -29,7 +27,6 @@ function CartDetailContainer(props) {
     }
     const handleAddInCart = (item) => {
         addQuantity(dispatch, item, accessToken)
-        console.log('cong')
     }
     return (
         <>

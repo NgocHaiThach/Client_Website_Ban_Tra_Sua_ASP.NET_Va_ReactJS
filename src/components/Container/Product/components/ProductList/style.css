@@ -107,11 +107,12 @@ i.home-product-item__like-icon-fill {
 
 .home-product-item__origin {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 3px 10px 0;
     color: #595959;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 300;
+    padding: 10px 0;
 }
 
 .home-product-item__favourite {

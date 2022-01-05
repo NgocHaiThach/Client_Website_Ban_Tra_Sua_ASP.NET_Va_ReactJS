@@ -1,13 +1,8 @@
 import React from 'react';
-import FilterContainer from '../../containers/FilterContainer';
 import ProductContainer from '../../containers/ProductContainer';
 import SliderContainer from '../../containers/SliderContainer';
-import Category from './Category';
-import Filter from './Filter';
-import Pagination from './Pagination';
-import Propose from './Propose';
+import './style.css';
 
-import './style.css'
 
 Container.propTypes = {};
 

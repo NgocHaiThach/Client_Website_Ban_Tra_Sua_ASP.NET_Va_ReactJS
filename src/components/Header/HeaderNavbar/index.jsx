@@ -9,6 +9,7 @@ import { computeHeadingLevel } from '@testing-library/dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/userSlice';
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { idUser } from '../../../utils/getToken';
 
 HeaderNavbar.propTypes = {};
 
@@ -139,6 +140,9 @@ function HeaderNavbar(props) {
                             </li> */}
                             <li className="header__navbar-user-item">
                                 <Link to="/cart">Đơn mua</Link>
+                            </li>
+                            <li className="header__navbar-user-item">
+                                <Link to={`/personal/${idUser}`}>Tài khoản</Link>
                             </li>
                             <li className="header__navbar-user-item header__navbar-user-item--sparate">
                                 <a href='/login' onClick={onLogout}>Đăng xuất</a>

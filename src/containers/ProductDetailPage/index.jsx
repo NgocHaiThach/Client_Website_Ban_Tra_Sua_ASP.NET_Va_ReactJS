@@ -16,7 +16,6 @@ function ProductDetailPage(props) {
     const { slug } = useParams()
     const user = useSelector(state => state.user)
 
-
     //tìm xem có sp nào có tên trùng với slug => hiển thị lên detail
     const detailProduct = useSelector(state => {
         const foundProduct = state.products.products.find(x => toSlug(x.productName) === slug)
@@ -25,25 +24,8 @@ function ProductDetailPage(props) {
 
     const productItemValues = detailProduct
 
-    //tìm xem có sản phẩm nào trong giỏ có trùng tên với sản phẩm chuẩn bị thêm vào không?
-    // => có thì trả về index trong giỏ hàng
-    // const findProductInCart = useSelector((state) => {
-    //     const list = state.carts.carts.dishCarts
-
-    //     const foundProduct = list === undefined ? undefined : list.findIndex(
-    //         x => toSlug(x.product.productName) === slug)
-    //     // console.log('gio hàng', foundProduct)
-    //     return foundProduct
-    // })
-
-    //lấy giá trị sản phẩm sẽ update dựa vào index
-    //const valueUpdate = useSelector(state => state.carts.carts.dishCarts === undefined ? undefined : state.carts.carts.dishCarts[findProductInCart])
-
-
-
     const handleAddCartClick = (valuesAdd) => {
         if (user.UserName) {
-            console.log('username', user.UserName)
             addOneItemToCart(dispatch, valuesAdd)
         }
     }

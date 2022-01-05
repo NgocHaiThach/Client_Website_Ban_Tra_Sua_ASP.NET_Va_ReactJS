@@ -2,3 +2,10 @@
     height: var(--header-height);
     background-image: linear-gradient(0, #fe6433, #f53e2d);
 }
+
+@media (max-width: 739px) {
+    .header-with-search {
+        display: flex;
+        justify-content: space-around;
+    }
+}

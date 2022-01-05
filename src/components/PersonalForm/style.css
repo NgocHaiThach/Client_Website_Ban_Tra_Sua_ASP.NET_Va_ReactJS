@@ -21,7 +21,7 @@
     display: flex;
 }
 .payment__address {
-    width: 60%;
+    width: 100%;
 }
 
 .payment__address-title {
@@ -31,26 +31,21 @@
     font-weight: 500;
     color: var(--primary-color);
     padding: 20px 0 0 15px;
-}
-
-.payment__note {
-    font-size: 18px;
-    line-height: 1.4;
-    font-weight: 500;
-    color: var(--primary-color);
-    padding: 20px 0 0 15px;
+    text-align: center;
 }
 
 .payment__address-name {
+    display: flex;
     font-size: 18px;
     padding: 15px;
     line-height: 1.4;
     font-weight: bold;
+    justify-content: center;
 }
 
 .payment__address-name__input {
     margin-top: 10px;
-    width: 80%;
+    width: 100%;
     padding: 5px;
 }
 
@@ -59,7 +54,7 @@
     padding: 15px;
     line-height: 1.4;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-weight: bold;
 }
 
@@ -71,7 +66,7 @@
 .payment__address-phone__input,
 .payment__address-mail__input {
     margin-top: 10px;
-    width: 90%;
+    width: 100%;
     padding: 5px;
 }
 .payment__address-province-and-district {
@@ -79,7 +74,7 @@
     padding: 15px;
     line-height: 1.4;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-weight: bold;
 }
 
@@ -91,7 +86,7 @@
 .payment__address-province__input,
 .payment__address-district__input {
     margin-top: 10px;
-    width: 90%;
+    width: 100%;
     padding: 5px;
 }
 
@@ -100,19 +95,20 @@
     padding: 15px;
     line-height: 1.4;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-weight: bold;
 }
 
 .payment__address-ward,
 .payment__address-home {
-    width: 50%;
+    width: 15%;
+    margin-left: 120px;
 }
 
 .payment__address-ward__input,
 .payment__address-home__input {
     margin-top: 10px;
-    width: 90%;
+    width: 30%;
     padding: 5px;
 }
 
@@ -315,4 +311,11 @@
     .payment__title {
         margin: 116px auto 0 auto;
     }
+}
+
+.save {
+    float: right;
+    background-color: var(--primary-color);
+    color: white;
+    margin: 0 80px 20px 0;
 }

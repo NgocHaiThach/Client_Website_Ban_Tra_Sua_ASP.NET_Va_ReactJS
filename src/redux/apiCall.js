@@ -1,15 +1,8 @@
-import RequestApi from '../utils/RequestApi'
-import { getProductStart, getProductSuccess, getProductFailure } from "./productSlice"
-import {
-    getCartStart, getCartSuccess, getCartFailure,
-    deleteCartStart, deleteCartSuccess, deleteCartFailure,
-    addOneItemToCartStart, addOneItemToCartSuccess, addOneItemToCartFailure,
-    updateCartStart, updateCartSuccess, updateCartFailure,
-    addQuantityStart, addQuantitySuccess, addQuantityFailure,
-    decreaseQuantityStart, decreaseQuantitySuccess, decreaseQuantityFailure
-} from "./cartSlice"
 import { number } from '../components/Container/Product/components/ProductItemDetail'
 import { accessToken, idUser } from '../utils/getToken'
+import RequestApi from '../utils/RequestApi'
+import { addOneItemToCartFailure, addOneItemToCartStart, addQuantityFailure, addQuantityStart, addQuantitySuccess, decreaseQuantityFailure, decreaseQuantityStart, decreaseQuantitySuccess, deleteCartFailure, deleteCartStart, deleteCartSuccess, getCartFailure, getCartStart, getCartSuccess, updateCartFailure, updateCartStart, updateCartSuccess } from "./cartSlice"
+import { getProductFailure, getProductStart, getProductSuccess } from "./productSlice"
 
 
 
@@ -17,16 +10,13 @@ import { accessToken, idUser } from '../utils/getToken'
 
 //LOGIN
 
-export const userLogin = async (dispatch, username, password) => {
-
-}
 
 //CART
 
 export const decreaseQuantity = async (dispatch, item, accessToken) => {
     dispatch(decreaseQuantityStart)
     try {
-        const res = await RequestApi(`api/dishcarts/${item.dishId}`, 'PUT', {
+        await RequestApi(`api/dishcarts/${item.dishId}`, 'PUT', {
             cartId: item.cartId,
             dishId: item.dishId,
             productId: item.productId,
@@ -46,7 +36,7 @@ export const decreaseQuantity = async (dispatch, item, accessToken) => {
 export const addQuantity = async (dispatch, item) => {
     dispatch(addQuantityStart)
     try {
-        const res = await RequestApi(`api/dishcarts/${item.dishId}`, 'PUT', {
+        await RequestApi(`api/dishcarts/${item.dishId}`, 'PUT', {
             cartId: item.cartId,
             dishId: item.dishId,
             productId: item.productId,
@@ -68,7 +58,7 @@ export const updateCart = async (dispatch, item) => {
     console.log('item put', item.id)
     try {
 
-        const req = await RequestApi(`carts/${item.id}`, 'PUT', {
+        await RequestApi(`carts/${item.id}`, 'PUT', {
             product: {
                 idCategory: item.product.idCategory,
                 name: item.product.name,
@@ -91,7 +81,7 @@ export const addOneItemToCart = async (dispatch, valuesAdd) => {
 
     dispatch(addOneItemToCartStart)
     try {
-        const res = await RequestApi('api/dishcarts', 'POST',
+        await RequestApi('api/dishcarts', 'POST',
             {
                 cartId: valuesAdd.cartId,
                 productId: valuesAdd.productId,
@@ -127,7 +117,7 @@ export const getCarts = async (dispatch, accessToken, idUser) => {
 export const deleteItemInCart = async (dispatch, id, accessToken) => {
     dispatch(deleteCartStart)
     try {
-        const res = await RequestApi(`api/dishcarts/${id}`, 'DELETE', null, accessToken)
+        await RequestApi(`api/dishcarts/${id}`, 'DELETE', null, accessToken)
         dispatch(deleteCartSuccess(id))
     }
     catch (err) {

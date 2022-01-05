@@ -23,3 +23,8 @@
     color: var(--white-color);
     font-size: 18px;
 }
+
+.button__back-home {
+    text-decoration: none;
+    color: white;
+}

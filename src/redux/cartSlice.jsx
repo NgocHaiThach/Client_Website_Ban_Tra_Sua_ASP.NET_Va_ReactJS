@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { number } from "../components/Container/Product/components/ProductItemDetail";
-import { idLastItem } from "../containers/ProductDetailPage";
-import RequestApi from "../utils/RequestApi";
-import cookies from 'react-cookies';
 
 const carts = createSlice({
     name: 'carts',

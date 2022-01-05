@@ -1,13 +1,12 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import LoginForm from '../../components/LoginForm';
-import { login, logout } from '../../redux/userSlice';
-import RequestApi from '../../utils/RequestApi';
-import cookies from 'react-cookies';
-import { useHistory } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
+import React, { useState } from 'react';
+import cookies from 'react-cookies';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import LoginForm from '../../components/LoginForm';
 import { getCarts } from '../../redux/apiCall';
+import { login } from '../../redux/userSlice';
+import RequestApi from '../../utils/RequestApi';
 
 LoginPage.propTypes = {
 };
@@ -15,11 +14,12 @@ LoginPage.propTypes = {
 function LoginPage(props) {
     const history = useHistory()
     const dispath = useDispatch()
+    const [status, setStatus] = useState('abc')
     const loginFaild = false
     const handleOnSubmit = async (data) => {
 
         try {
-            await RequestApi('api/token', 'POST', {
+            await RequestApi('api/users/login', 'POST', {
                 username: data.username,
                 password: data.password,
             })
@@ -34,10 +34,14 @@ function LoginPage(props) {
                     }
                     else if (res.status === 400) {
                         console.log('dang nhap that bai')
-                        loginFaild = true
+                        // loginFaild = true
                     }
                 })
-                .catch(err => { console.log("aaaaa", { err }) })
+                .catch(err => {
+                    console.log(err)
+                    setStatus('hai123462734567')
+                    console.log('loginFail', status)
+                })
             if (loginFaild === false) {
                 history.push('/home/all')
             }

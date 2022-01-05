@@ -1,9 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { displayFormLogin } from '../Header/HeaderNavbar';
 import './style.css';
 
 LoginForm.propTypes = {};
@@ -62,9 +61,10 @@ function LoginForm(props) {
                         </div>
                         <div className="auth-form__aside">
                             <div className="auth-form__help">
-                                <a href="" className="auth-form__help-link auth-form__help--forgot">
+                                <Link to='/forgot_pass'
+                                    className="auth-form__help-link auth-form__help--forgot">
                                     Quên mật khẩu
-                                </a>
+                                </Link>
                                 {/* <span className="auth-form__help-sparate"></span>
                                 <a href="" className="auth-form__help-link">
                                     Cần trợ giúp?

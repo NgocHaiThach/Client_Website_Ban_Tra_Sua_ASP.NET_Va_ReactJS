@@ -107,3 +107,37 @@
     padding-left: 30px;
     padding-bottom: 50px;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .bill__title {
+        margin: 116px auto 0 auto;
+        max-width: 700px;
+    }
+    .bill__border {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 739px) {
+    .bill__title {
+        margin: 116px auto 0 auto;
+        max-width: 325px;
+    }
+    .bill__border {
+        background-color: #fff4f4;
+        max-width: 325px;
+        margin: 0 auto 50px auto;
+    }
+
+    .bill__id {
+        line-height: 1.5;
+    }
+
+    .bill__addres-title {
+        font-size: 16px;
+    }
+}
+
+.min-width {
+    min-width: 245px;
+}

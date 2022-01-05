@@ -157,3 +157,17 @@
     color: rgb(201, 37, 37);
     font-size: 12px;
 }
+
+@media (max-width: 739px) {
+    .auth-form__container {
+        padding: 20px 32px;
+    }
+
+    .auth-form {
+        width: 333px;
+    }
+
+    .auth-form__socials {
+        display: none;
+    }
+}

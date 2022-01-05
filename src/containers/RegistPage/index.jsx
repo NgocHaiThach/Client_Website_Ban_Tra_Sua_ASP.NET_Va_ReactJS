@@ -1,25 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RegistForm from '../../components/RegistForm';
-import callApi from '../../utils/RequestApi';
-import { useHistory } from "react-router-dom";
+import requestApi from '../../utils/RequestApi';
 
 RegistPage.propTypes = {};
 
 function RegistPage(props) {
-    const history = useHistory
 
-    const handleOnSubmit = (data) => {
-        callApi('register', 'POST', {
-            username: data.username,
-            password: data.password,
-        })
-            .then(res => {
-                if (res.status === 201) {
-                    history.push('/login');
-                }
+    const handleOnSubmit = async (data) => {
+        try {
+            await requestApi(`api/users`, 'POST', {
+                userName: data.username,
+                password: data.password,
+                fullName: data.fullname,
+                email: data.email,
+                gender: true,
             })
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
+
     return (
         <div>
             <RegistForm handleOnSubmit={handleOnSubmit} />
