@@ -10,8 +10,17 @@ function CartDetailResult(props) {
     const showTotal_SubAmount = (cartList) => {
         let total = 0
         for (let i = 0; i < cartList.length; i++) {
-            total += (cartList[i].product.price + cartList[i].size.price) * cartList[i].quantily
+            if (cartList[i].topping !== null) {
+
+                total += (cartList[i].product.price + cartList[i].size.price + cartList[i].topping.price) * cartList[i].quantily
+            }
+            else {
+                total += (cartList[i].product.price + cartList[i].size.price) * cartList[i].quantily
+
+            }
         }
+        // cartList.topping.price && (total = total + cartList.topping.price)
+        // console.log('cart list', cartList.product)
         return total
     }
 
@@ -21,17 +30,17 @@ function CartDetailResult(props) {
                 <label>Tổng:</label>
                 <div className="totals-value" >{formatPrice(showTotal_SubAmount(cartList))}đ</div>
             </div>
-            <div className="totals-item">
+            {/* <div className="totals-item">
                 <label>Giảm:</label>
                 <div className="totals-value">10.000đ</div>
-            </div>
+            </div> */}
             <div className="totals-item">
                 <label>Giao Hàng:</label>
                 <div className="totals-value" >15.000đ</div>
             </div>
             <div className="totals-item totals-item-total">
                 <label>Tổng Cộng:</label>
-                <div className="totals-value total-grand">{formatPrice(showTotal_SubAmount(cartList) - 10000 + 15000)}đ</div>
+                <div className="totals-value total-grand">{formatPrice(showTotal_SubAmount(cartList) + 15000)}đ</div>
             </div>
             <Link to={`payment/${idUser}`} className="btn col l-12 checkout">Thanh Toán</Link>
         </div>

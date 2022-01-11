@@ -50,6 +50,7 @@
 .product-item__description {
     font-size: 12px;
     line-height: 18px;
+    /* color: red; */
 }
 
 .product-item__price {

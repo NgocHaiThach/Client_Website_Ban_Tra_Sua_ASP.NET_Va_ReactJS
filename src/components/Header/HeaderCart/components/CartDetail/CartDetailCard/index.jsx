@@ -12,7 +12,7 @@ function CartDetailCard(props) {
     const isTopping = item.topping
 
     const totalPrice = isTopping ?
-        ((productPrice + sizePrice) * quantity)
+        ((productPrice + sizePrice + isTopping.price) * quantity)
         :
         ((productPrice + sizePrice) * quantity)
 

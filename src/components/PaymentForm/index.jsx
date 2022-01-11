@@ -13,7 +13,7 @@ const schema = yup.object().shape({
     name: yup.string().required().max(50),
     phone: yup.string().required().min(10).max(10),
     email: yup.string().required().email(),
-    province: yup.string().required(),
+    // province: yup.string().required(),
     district: yup.string().required(),
     ward: yup.string().required(),
     home: yup.string().required(),
@@ -74,20 +74,17 @@ function PaymentForm(props) {
 
     let tempPrice = 0
     for (let i = 0; i < listCart.length; i++) {
-        tempPrice += (listCart[i].product.price + listCart[i].size.price) * listCart[i].quantily
+        if (listCart[i].topping !== null) {
+            tempPrice += (listCart[i].product.price + listCart[i].size.price + listCart[i].topping.price) * listCart[i].quantily
+        }
+        else {
+            tempPrice += (listCart[i].product.price + listCart[i].size.price) * listCart[i].quantily
+        }
     }
 
     const totalPrice = tempPrice + 15000
 
-    //xử lý  thanh toán
-
-    // const onOder = () => {
-    //     if (handleOder) {
-    //         handleOder()
-    //     }
-    // }
-
-
+    const [city, setCity] = useState('Hồ Chí Minh')
 
     return (
         <div className="grid wide">
@@ -173,8 +170,8 @@ function PaymentForm(props) {
                                         className="payment__address-province__input"
                                         type="text"
                                         placeholder="Tỉnh / Thành phố"
-                                        {...register("province")}
-                                        defaultValue={infoPayment.province}
+                                        // {...register("province")}
+                                        value={city}
                                     />
                                 </div>
                                 <div className="payment__address-district">
@@ -267,7 +264,12 @@ function PaymentForm(props) {
                                             {item.product.productName} {item.sizeName} x{item.quantily}
                                         </div>
                                         <div className="payment__info-list__item-price">
-                                            {formatPrice((item.quantily) * (item.product.price + item.size.price))}đ
+                                            {item.topping !== null ?
+                                                formatPrice((item.quantily) * (item.product.price + item.size.price + item.topping.price))
+                                                :
+                                                formatPrice((item.quantily) * (item.product.price + item.size.price))
+
+                                            }đ
                                         </div>
                                     </div>
                                 ))}

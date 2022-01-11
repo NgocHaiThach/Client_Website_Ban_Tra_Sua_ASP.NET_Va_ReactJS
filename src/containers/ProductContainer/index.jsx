@@ -3,51 +3,57 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductList from '../../components/Container/Product/components/ProductList';
 import { FormatInput } from '../../utils/FormatInput';
 import { clearInput } from '../../redux/searchSlice'
-import requestApi from '../../utils/RequestApi';
+import RequestApi from '../../utils/RequestApi';
 
 ProductContainer.propTypes = {};
 
 function ProductContainer(props) {
 
-    const dispatch = useDispatch()
-    const [list, setList] = useState()
     const input = useSelector(state => state.search)
-    let productList = useSelector(state => state.products.products)
-    const listToSearch = useSelector(state => state.products.products)
+    const [productList, setProductList] = useState([])
+    const [listToSearch, setListToSearch] = useState([])
 
-    //xu ly search product
-    const handleSearch = () => {
 
-        const val = FormatInput(input)
-        const filter = listToSearch.filter((item) => {
-            const name = FormatInput(item.productName)
-            if (name.includes(val)) {
-                return item
-            }
-        })
-        productList = filter
+    const getProductList = async () => {
+        const res = await RequestApi('api/products', 'GET')
+        setProductList(res.data)
     }
 
-    handleSearch()
-    //get api lưu vào productList để cho việc hiển thị  
-    // const getProductList = async () => {
-    //     const res = await requestApi('api/products/full', 'GET')
-    //     setList(res.data)
-    // }
+    //get api lưu vào ListToSearch để cho việc filter 
+    const getToSearch = async () => {
+        const res = await RequestApi('api/products', 'GET')
+        setListToSearch(res.data)
+    }
 
-    // useEffect(() => {
-    //     getProductList()
-    // }, [])
+    useEffect(() => {
+        getToSearch()
+    }, [input])
 
-    // if (input === '') {
-    //     productList = list
-    // }
+    useEffect(() => {
+        getProductList()
+    }, [])
 
+    //xu ly search product
+
+
+    // const val = FormatInput(input.search)
+    const filter = listToSearch.filter((item) => {
+        const name = FormatInput(item.productName)
+        if (name.includes(input.search)) {
+            return item
+        }
+    })
+
+
+    let tempList = productList
+    if (input !== '') {
+        tempList = filter
+    }
 
     return (
         <div>
             <ProductList
-                productList={productList}
+                productList={tempList}
             />
         </div>
     );

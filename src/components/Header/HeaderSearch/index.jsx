@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Images from '../../../constant/images';
 import { userName } from '../../../utils/getToken';
@@ -8,7 +8,8 @@ HeaderSearch.propTypes = {};
 
 function HeaderSearch(props) {
 
-    const { handelSearch } = props;
+    const { handleSearch } = props;
+    const typingTimoutRef = useRef(null)
 
     const [displayMobile, setDisplayMobile] = useState(false);
     const displayMenuMobile = () => {
@@ -16,10 +17,28 @@ function HeaderSearch(props) {
     }
 
     const [search, setSearch] = useState()
-    const onSearch = (input) => {
-        if (input) {
-            handelSearch(input)
+    // const onSearch = (input) => {
+    //     if (input) {
+    //         handelSearch(input)
+    //     }
+    // }
+    const onSearch = (e) => {
+        const input = e.target.value
+        setSearch(input)
+
+        if (typingTimoutRef.current) {
+            clearTimeout(typingTimoutRef.current)
         }
+
+        typingTimoutRef.current = setTimeout(() => {
+            const formvalues = {
+                search: input,
+            }
+            if (handleSearch) {
+                handleSearch(formvalues)
+            }
+        }, 300)
+
     }
     return (
         <>
@@ -62,12 +81,12 @@ function HeaderSearch(props) {
                         className="header__search-input"
                         placeholder="Tìm kiếm sản phẩm"
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={onSearch}
                     />
                 </div>
 
                 <button className="header__search-btn"
-                    onClick={() => onSearch(search)}
+                // onClick={() => onSearch(search)}
                 >
                     <i className="header__search-btn-icon fas fa-search"></i>
                 </button>

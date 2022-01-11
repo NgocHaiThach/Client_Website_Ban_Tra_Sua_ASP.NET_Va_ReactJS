@@ -14,7 +14,7 @@ LoginPage.propTypes = {
 function LoginPage(props) {
     const history = useHistory()
     const dispath = useDispatch()
-    const [status, setStatus] = useState('abc')
+    const [status, setStatus] = useState(false)
     const loginFaild = false
     const handleOnSubmit = async (data) => {
 
@@ -27,33 +27,39 @@ function LoginPage(props) {
                     // console.log('res', res)
                     if (res.status === 200) {
 
-                        cookies.save('user', res.data.token)
+                        // cookies.save('user', res.data.token)
+                        localStorage.setItem('user', res.data.token)
                         const action = login(jwt_decode(res.data.token).UserName)
                         dispath(action)
                         getCarts(dispath, res.data.token, jwt_decode(res.data.token).UserId)
+                        history.push('/home/all')
                     }
                     else if (res.status === 400) {
                         console.log('dang nhap that bai')
-                        // loginFaild = true
+                        loginFaild = true
                     }
                 })
                 .catch(err => {
                     console.log(err)
-                    setStatus('hai123462734567')
-                    console.log('loginFail', status)
+                    // setStatus('hai123462734567')
+                    // console.log('loginFail', status)
+                    alert('Tài khoản hoặc mật khẩu sai vui lòng kiểm tra lại')
+
                 })
-            if (loginFaild === false) {
-                history.push('/home/all')
-            }
+            // if (loginFaild === false) {
+            //     history.push('/home/all')
+            // }
         }
         catch (err) {
-            alert(err.response)
+            alert('Tài khoản không tồn tại')
         }
     }
 
     return (
         <div>
-            <LoginForm handleOnSubmit={handleOnSubmit} loginFaild={loginFaild} />
+            <LoginForm handleOnSubmit={handleOnSubmit}
+                loginFaild={loginFaild}
+            />
         </div>
     );
 }

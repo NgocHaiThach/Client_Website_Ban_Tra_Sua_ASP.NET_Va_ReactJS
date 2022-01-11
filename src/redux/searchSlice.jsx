@@ -13,7 +13,7 @@ const search = createSlice({
         },
         clearInput: (state,) => {
 
-            return state = ''
+            return state = ' '
 
         }
     }

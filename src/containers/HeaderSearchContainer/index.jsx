@@ -16,7 +16,7 @@ function HeaderSearchContainer(props) {
     return (
         <>
             <HeaderSearch
-                handelSearch={handelSearch}
+                handleSearch={handelSearch}
             />
         </>
     );

@@ -20,7 +20,8 @@ function HeaderNavbar(props) {
     const userName = useSelector(state => state.user)
 
     const onLogout = () => {
-        cookies.remove('user')
+        // cookies.remove('user')
+        localStorage.removeItem('user')
         const action = logout()
         dispatch(action);
     }

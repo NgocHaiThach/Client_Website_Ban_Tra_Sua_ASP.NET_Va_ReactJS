@@ -61,7 +61,7 @@ function PaymentPage(props) {
                     address: data.home,
                     ward: data.ward,
                     district: data.district,
-                    region: data.province
+                    region: 'Hồ Chí Minh'
                 },
                 shipPrice: 15000
             })

@@ -19,7 +19,12 @@ function CartHeaderCard(props) {
                 <div className="header__cart-item-head">
                     <h5 className="header__cart-item-name">{item.product.productName}</h5>
                     <div className="header__cart-item-price-wrap">
-                        <span className="header__cart-item-price">{formatPrice((item.product.price + +item.size.price))}đ</span>
+                        <span className="header__cart-item-price">{
+                            item.topping !== null ?
+                                formatPrice((item.product.price + +item.size.price + +item.topping.price))
+                                :
+                                formatPrice((item.product.price + +item.size.price))
+                        }đ</span>
                         <span className="header__cart-item-multiply">x</span>
                         <span className="header__cart-item-qnt">{item.quantily}</span>
                     </div>

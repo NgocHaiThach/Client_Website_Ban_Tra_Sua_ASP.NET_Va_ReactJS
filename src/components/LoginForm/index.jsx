@@ -46,8 +46,8 @@ function LoginForm(props) {
 
                                 />
                             </p>
-                            {errors?.username?.type === "required" && <p className="valid-form__message">Vui lòng nhập email</p>}
-                            {errors?.username?.type === "email" && <p className="valid-form__message">Vui lòng nhập đúng email</p>}
+                            {errors?.username?.type === "required" && <p className="valid-form__message">Vui lòng nhập số điện thoại</p>}
+                            {errors?.username?.type === "email" && <p className="valid-form__message">Vui lòng nhập đúng số điện thoại</p>}
                             <p className="auth-form__group">
                                 <input
                                     name="password"
@@ -57,7 +57,7 @@ function LoginForm(props) {
                             </p>
                             {errors?.password?.type === "required" && <p className="valid-form__message">Vui lòng nhập mật khẩu</p>}
                             {errors?.password?.type === "min" && <p className="valid-form__message">Mật khẩu phải dài hơn 5 ký tự</p>}
-                            {loginFaild === true ? <p className="valid-form__message">Tài khoản hoặc mật khẩu sai. Vui lòng kiểm tra lại</p> : ''}
+                            {/* {status && <p className="valid-form__message">Tài khoản hoặc mật khẩu sai. Vui lòng kiểm tra lại</p>} */}
                         </div>
                         <div className="auth-form__aside">
                             <div className="auth-form__help">
