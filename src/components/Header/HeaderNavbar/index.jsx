@@ -31,7 +31,7 @@ function HeaderNavbar(props) {
         <nav className="header__navbar hide-on-mobile-tablet">
             <ul className="header__navbar-list">
                 <li className="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
-                    Vào cửa hàng trên ứng dụng TNH-Shop
+                    Vào cửa hàng trên ứng dụng Ottel-Shop
                     {/* <!-- BEGIN HEADER QR CODE --> */}
                     <div className="header__qr">
                         <img src={Images.QR_CODE} alt="QR Code" className="header_qr-img" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import RegistForm from '../../components/RegistForm';
 import requestApi from '../../utils/RequestApi';
+import { ToastContainer } from 'react-toastify';
 
 RegistPage.propTypes = {};
 
@@ -20,10 +21,16 @@ function RegistPage(props) {
             console.log(err);
         }
     }
+    const style = {
+        fontSize: 17
+    }
+
 
     return (
         <div>
             <RegistForm handleOnSubmit={handleOnSubmit} />
+            <ToastContainer style={style} />
+
         </div>
     );
 }

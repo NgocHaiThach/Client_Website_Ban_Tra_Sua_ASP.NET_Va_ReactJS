@@ -3,6 +3,8 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 
 RegistForm.propTypes = {};
@@ -26,6 +28,15 @@ function RegistForm(props) {
         e.preventDefault();
         if (handleOnSubmit) handleOnSubmit(data)
         reset()
+        toast.info('Đăng ký thành công', {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     return (

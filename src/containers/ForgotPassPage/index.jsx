@@ -1,6 +1,7 @@
 import React from 'react';
 import ForgotPass from '../../components/ForgotPass';
 import requestApi from '../../utils/RequestApi';
+import { ToastContainer } from 'react-toastify';
 
 function ForgotPassPage(props) {
 
@@ -19,9 +20,14 @@ function ForgotPassPage(props) {
         //console.log(data, gender)
     }
 
+    const style = {
+        fontSize: 17
+    }
+
     return (
         <div>
             <ForgotPass handleForgotPass={handleForgotPass} />
+            <ToastContainer style={style} />
         </div>
     );
 }

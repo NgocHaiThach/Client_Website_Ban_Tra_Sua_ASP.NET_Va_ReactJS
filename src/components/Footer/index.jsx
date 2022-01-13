@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Images from '../../constant/images';
 import './style.css'
 
@@ -13,13 +14,13 @@ function Footer(props) {
                         <h3 className="footer__heading">Chăm sóc khách hàng</h3>
                         <ul className="footer-list">
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Trung tâm trợ giúp</a>
+                                <Link to="/" className="footer-item__link">Trung tâm trợ giúp</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">NgocHai Mail</a>
+                                <Link to="/" className="footer-item__link">NgocHai Mail</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Hướng dẫn mua hàng</a>
+                                <Link to="/" className="footer-item__link">Hướng dẫn mua hàng</Link>
                             </li>
                         </ul>
                     </div>
@@ -27,13 +28,13 @@ function Footer(props) {
                         <h3 className="footer__heading">Về tickid</h3>
                         <ul className="footer-list">
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Giới thiệu</a>
+                                <Link to="/" className="footer-item__link">Giới thiệu</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Tuyển dụng</a>
+                                <Link to="/" className="footer-item__link">Tuyển dụng</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Điều khoản</a>
+                                <Link to="/" className="footer-item__link">Điều khoản</Link>
                             </li>
                         </ul>
                     </div>
@@ -41,13 +42,13 @@ function Footer(props) {
                         <h3 className="footer__heading">Danh mục</h3>
                         <ul className="footer-list">
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Trà sữa</a>
+                                <Link to="/" className="footer-item__link">Trà sữa</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Trà đào</a>
+                                <Link to="/" className="footer-item__link">Trà trái cây</Link>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">Trà đá</a>
+                                <Link to="/" className="footer-item__link">Macchiato</Link>
                             </li>
                         </ul>
                     </div>
@@ -55,21 +56,21 @@ function Footer(props) {
                         <h3 className="footer__heading">Theo dõi chúng tôi</h3>
                         <ul className="footer-list">
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">
+                                <a href="https://www.facebook.com/haitac.ks/" className="footer-item__link">
                                     <i className="footer-item__icon fab fa-facebook"></i>
                                     Facebook
                                 </a>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">
+                                <a href="https://www.instagram.com/hai_xxiv/" className="footer-item__link">
                                     <i className="footer-item__icon fab fa-instagram"></i>
                                     Instagram
                                 </a>
                             </li>
                             <li className="footer-item">
-                                <a href="" className="footer-item__link">
-                                    <i className="footer-item__icon fab fa-linkedin"></i>
-                                    Linkedin
+                                <a href="https://github.com/NgocHaiThach" className="footer-item__link">
+                                    <i className="footer-item__icon fab fa-github"></i>
+                                    Github
                                 </a>
                             </li>
                         </ul>
