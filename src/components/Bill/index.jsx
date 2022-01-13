@@ -17,7 +17,13 @@ function Bill(props) {
 
     let tempPrice = 0
     for (let i = 0; i < listCart.length; i++) {
-        tempPrice += (listCart[i].product.price + listCart[i].size.price) * listCart[i].quantily
+        if (listCart[i].topping !== null) {
+            tempPrice += (listCart[i].product.price + listCart[i].size.price + listCart[i].topping.price) * listCart[i].quantily
+        }
+        else {
+            tempPrice += (listCart[i].product.price + listCart[i].size.price) * listCart[i].quantily
+
+        }
     }
     const totalPrice = tempPrice + 15000
 
@@ -51,7 +57,14 @@ function Bill(props) {
                                     <td className="table-body__item-name w-30 table-body__item min-width ">{item.product.productName}</td>
                                     <td className="w-20 table-body__item ">{item.quantily}</td>
                                     <td className="w-20 table-body__item ">{item.sizeName}</td>
-                                    <td className="w-20 table-body__item">{formatPrice((item.product.price + item.size.price) * item.quantily)}đ</td>
+                                    <td className="w-20 table-body__item">
+                                        {item.topping !== null ?
+                                            formatPrice((item.product.price + item.size.price + item.topping.price) * item.quantily)
+                                            :
+                                            formatPrice((item.product.price + item.size.price) * item.quantily)
+
+                                        }đ
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

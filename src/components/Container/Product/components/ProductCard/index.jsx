@@ -13,8 +13,8 @@ function ProductCard(props) {
   const slug = toSlug(product.productName)
 
   return (
-    <Link
-      to={`/product/${slug}`}
+    <a
+      href={`/product/${slug}`}
       className="home-product-item">
       <div
         className="home-product-item__img"
@@ -48,7 +48,7 @@ function ProductCard(props) {
         <i className="fas fa-check"></i>
         <span>Yêu thích</span>
       </div>
-    </Link>
+    </a>
   );
 }
 
